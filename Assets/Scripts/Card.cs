@@ -20,8 +20,11 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private bool preventDrag = false;
     private Vector2 _touchOffset;
     private Vector2 _initialPosition;
-    private readonly float TOLERANCE = 0.5f;
 
+    private void Start()
+    {
+        _initScale = transform.localScale;
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         
@@ -54,19 +57,15 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public void OnEndDrag(PointerEventData eventData)
     {
         DraggedNow = false;
-        if (!preventDrag)
+        if (eventData.position.y > Camera.main.scaledPixelHeight * 2 / 3)
         {
-            if (eventData.position.y > Camera.main.scaledPixelHeight * 2/3)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                StartCoroutine(ReturnToInitialPos());
-                StartCoroutine(DecreaseScale());
-            }
+            Destroy(gameObject);
         }
-        
+        else
+        {
+            StartCoroutine(ReturnToInitialPos());
+        }
+
         print("DragEnd");
     }
 
@@ -74,7 +73,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         _scaleIncreasing = true;
         _scaleIncreaseAlpha = 0f;
-        _initScale = transform.localScale;
+        
         _initRot = transform.localRotation;
         while (_scaleIncreaseAlpha < 1f)
         {
@@ -83,19 +82,16 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             transform.localScale = Vector2.Lerp(_initScale, _initScale * scaleIncreaseMultipier, _scaleIncreaseAlpha);
             transform.localRotation = Quaternion.Lerp(_initRot, Quaternion.identity, _scaleIncreaseAlpha);
         }
-        _scaleIncreasing = false;
-    }
-
-    IEnumerator DecreaseScale()
-    {
+        yield return new WaitWhile(() => DraggedNow);
         _scaleIncreaseAlpha = 0f;
         while (_scaleIncreaseAlpha < 1f)
         {
             yield return new WaitForEndOfFrame();
             _scaleIncreaseAlpha += Time.deltaTime / highlightTime;
             transform.localScale = Vector2.Lerp(_initScale * scaleIncreaseMultipier, _initScale, _scaleIncreaseAlpha);
-            transform.localRotation = Quaternion.Lerp( Quaternion.identity, _initRot, _scaleIncreaseAlpha);
+            transform.localRotation = Quaternion.Lerp(Quaternion.identity, _initRot, _scaleIncreaseAlpha);
         }
+        _scaleIncreasing = false;
     }
 
     IEnumerator ReturnToInitialPos()
