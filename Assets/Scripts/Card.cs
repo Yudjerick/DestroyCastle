@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -24,9 +25,13 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private Vector2 _touchOffset;
     private Vector2 _initialPosition;
 
+    private ShootPanel _shootPanel;
+
     private void Start()
     {
         _initScale = transform.localScale;
+        _shootPanel = FindAnyObjectByType<ShootPanel>();
+        
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -134,6 +139,6 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public virtual void PerformActiom()
     {
-
+        FindAnyObjectByType<ShootPanel>().GetComponent<Image>().raycastTarget = true;
     }
 }
