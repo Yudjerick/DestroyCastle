@@ -1,0 +1,12 @@
+# ninja log v5
+61	724	7543647594880840	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	ab00a7f98f6188d6
+725	1429	7543647601641274	D:/Users/PetrenkoDenis/Documents/UnityProjects/DestroyCastle/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1m2m143i/obj/arm64-v8a/libswappywrapper.so	44f7b5ae9c0f66ab
+35	1989	7543647607571269	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	60d2a68216413b2e
+21	2024	7543647608091277	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	dd4e840d69228402
+9	2076	7543647608661273	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	a3bd4d9ec7c36e0d
+52	2114	7543647609121275	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	9071b317d4be0d5e
+44	2253	7543647610491262	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e539349419887ac0
+1	2325	7543647611261255	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	20f671b0fb949a
+28	2567	7543647613711233	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	788429f1410cf32d
+15	2749	7543647615541264	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	3207fa3de8db9c72
+2749	2896	7543647617071230	D:/Users/PetrenkoDenis/Documents/UnityProjects/DestroyCastle/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1m2m143i/obj/arm64-v8a/libgame.so	9315070530443acd
