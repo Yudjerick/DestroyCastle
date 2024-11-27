@@ -17,6 +17,9 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private float _scaleIncreaseAlpha;
     private bool _scaleIncreasing;
 
+    [SerializeField] private float dissolveTime;
+    private float _dissolveAlpha;
+
     private bool preventDrag = false;
     private Vector2 _touchOffset;
     private Vector2 _initialPosition;
@@ -56,13 +59,14 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        DraggedNow = false;
+       
         if (eventData.position.y > Camera.main.scaledPixelHeight * 2 / 3)
         {
-            Destroy(gameObject);
+            StartCoroutine(Dissolve());
         }
         else
         {
+            DraggedNow = false;
             StartCoroutine(ReturnToInitialPos());
         }
 
@@ -114,5 +118,22 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             }
         }
         preventDrag = false;
+    }
+
+    IEnumerator Dissolve()
+    {
+        while (_dissolveAlpha < 1f)
+        {
+            yield return new WaitForEndOfFrame();
+            _dissolveAlpha += Time.deltaTime / dissolveTime;
+            GetComponent<CanvasGroup>().alpha = 1 - _dissolveAlpha;
+        }
+        PerformActiom();
+        Destroy(gameObject);
+    }
+
+    public virtual void PerformActiom()
+    {
+
     }
 }
