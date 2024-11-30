@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef44f1349225e43a5755a852e9bf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <LaunchForce>k__BackingField: 3
+  <LaunchForce>k__BackingField: 20
   lifeTime: 3
 --- !u!1 &8573902077662844473
 GameObject:

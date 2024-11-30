@@ -39,7 +39,7 @@ public static class BallisticCalculator
         float angle2 = Mathf.Atan((launchSpeed * launchSpeed - root) / (g * dx));
 
         // Выбираем один из углов
-        float selectedAngle = angle1; // Или angle2, в зависимости от предпочтений
+        float selectedAngle = angle2; // Или angle2, в зависимости от предпочтений
 
         // Рассчитываем вектор выстрела
         Vector2 launchVector = new Vector2(

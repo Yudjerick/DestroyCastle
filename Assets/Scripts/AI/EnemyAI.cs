@@ -24,13 +24,16 @@ public class EnemyAI : MonoBehaviour
 
         ShootPanel shootPanel = FindAnyObjectByType<ShootPanel>();
         var shootWorldMagnittude = GameManager.instance.ShootPanel.MaxDragVector;
-        var balisticResult = BallisticCalculator.CalculateLaunchVector(GameManager.instance.ShootPanel.CurrentCanon.transform.position, target.transform.position, GameManager.instance.ShootPanel.CurrentCanon.Projectile.LaunchForce * shootWorldMagnittude);
+        var balisticResult = BallisticCalculator.CalculateLaunchVector(GameManager.instance.ShootPanel.CurrentCanon.transform.position, target.transform.position, GameManager.instance.ShootPanel.CurrentCanon.Projectile.LaunchForce);
 
         if (balisticResult != null)
         {
             Vector2 shootVector = (Vector2)balisticResult;
-            var shootScreenDrag = Camera.main.WorldToScreenPoint(shootVector * shootWorldMagnittude);
-            StartCoroutine(SimulateDrag(Vector2.zero, -shootScreenDrag, 0.5f, shootPanel));
+            Vector2 shootScreenDrag = Camera.main.WorldToScreenPoint(shootVector);
+            Vector2 screenCenter = new Vector2(Camera.main.scaledPixelWidth / 2, Camera.main.scaledPixelHeight /2);
+            GameManager.instance.ShootPanel.CurrentCanon.UpdateAimingLine(shootVector);
+            GameManager.instance.ShootPanel.CurrentCanon.Shoot();
+            //StartCoroutine(SimulateDrag(screenCenter, screenCenter - shootScreenDrag, 0.5f, shootPanel));
         }
         
     }

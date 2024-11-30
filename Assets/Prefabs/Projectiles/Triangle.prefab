@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebee41b53d5a274498704083d7d22c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <LaunchForce>k__BackingField: 3
+  <LaunchForce>k__BackingField: 20
   lifeTime: 5
 --- !u!50 &7431718404654194383
 Rigidbody2D:
