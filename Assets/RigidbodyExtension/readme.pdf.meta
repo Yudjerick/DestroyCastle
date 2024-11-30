@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8cbf1b46436c09c46b5256042723c87b
+timeCreated: 1488367653
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 84341
+  packageName: Calculate Trajectory
+  packageVersion: 1.0
+  assetPath: Assets/RigidbodyExtension/readme.pdf
+  uploadId: 165032

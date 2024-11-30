@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dd7d8699110a24448b7c878c9c0f530f
+timeCreated: 1487850873
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 84341
+  packageName: Calculate Trajectory
+  packageVersion: 1.0
+  assetPath: Assets/RigidbodyExtension/Example/Jumping.physicMaterial
+  uploadId: 165032

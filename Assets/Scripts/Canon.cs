@@ -4,10 +4,12 @@ using UnityEngine.UI;
 [RequireComponent (typeof(LineRenderer))]
 public class Canon : MonoBehaviour
 {
+
+    [SerializeField] private ProjectileActivationPanel projectileActivationPanel;
     private LineRenderer _lineRenderer;
     private Vector2 _shootVector;
 
-    [SerializeField] private GameObject projectile; 
+    public Projectile Projectile { get; set; } 
 
     private void Start()
     {
@@ -29,10 +31,11 @@ public class Canon : MonoBehaviour
 
     public void Shoot()
     {
-        var instance = Instantiate(projectile, transform.position, Quaternion.Euler(0,0,Vector2.SignedAngle( Vector2.up, _shootVector)) );
-        instance.GetComponent<Rigidbody2D>().AddForce(instance.transform.up * instance.GetComponent<Projectile>().LaunchForce * _shootVector.magnitude);
+        var instance = Instantiate(Projectile, transform.position, Quaternion.Euler(0,0,Vector2.SignedAngle( Vector2.up, _shootVector)) );
+        instance.GetComponent<Rigidbody2D>().linearVelocity = (instance.transform.up * instance.GetComponent<Projectile>().LaunchForce * _shootVector.magnitude);
         _lineRenderer.positionCount = 0;
 
-        FindAnyObjectByType<ShootPanel>().GetComponent<Image>().raycastTarget = false;
+        projectileActivationPanel.Projectile = instance;
+        instance.OnCreated();
     }
 }
