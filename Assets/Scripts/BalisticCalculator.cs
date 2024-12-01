@@ -14,9 +14,6 @@ public static class BallisticCalculator
     {
         // Разница позиций
         Vector2 displacement = targetPosition - startPosition;
-        float distance = displacement.magnitude;
-
-        // Компоненты смещения
         float dx = displacement.x;
         float dy = displacement.y;
 
@@ -32,21 +29,30 @@ public static class BallisticCalculator
             return null;
         }
 
-        // Рассчитываем два возможных угла для выстрела
+        // Рассчитываем квадратный корень из дискриминанта
         float root = Mathf.Sqrt(discriminant);
 
-        float angle1 = Mathf.Atan((launchSpeed * launchSpeed + root) / (g * dx));
-        float angle2 = Mathf.Atan((launchSpeed * launchSpeed - root) / (g * dx));
+        // Угол для выстрела
+        float angle1 = Mathf.Atan2((launchSpeed * launchSpeed + root), (g * dx));
+        float angle2 = Mathf.Atan2((launchSpeed * launchSpeed - root), (g * dx));
 
-        // Выбираем один из углов
-        float selectedAngle = angle2; // Или angle2, в зависимости от предпочтений
+        // Выбираем один из углов (например, наибольший для более высокой траектории)
+        float selectedAngle = angle2;
+
+        // Учитываем направление смещения
+        /*if (dx < 0)
+        {
+            selectedAngle = -selectedAngle; // Поворот на 180 градусов для стрельбы влево
+        }*/
 
         // Рассчитываем вектор выстрела
         Vector2 launchVector = new Vector2(
             Mathf.Cos(selectedAngle),
             Mathf.Sin(selectedAngle)
         ) * launchSpeed;
-
+        Debug.Log(launchVector);
         return launchVector;
+       
     }
+
 }

@@ -29,11 +29,13 @@ public class EnemyAI : MonoBehaviour
         if (balisticResult != null)
         {
             Vector2 shootVector = (Vector2)balisticResult;
-            Vector2 shootScreenDrag = Camera.main.WorldToScreenPoint(shootVector);
-            Vector2 screenCenter = new Vector2(Camera.main.scaledPixelWidth / 2, Camera.main.scaledPixelHeight /2);
-            GameManager.instance.ShootPanel.CurrentCanon.UpdateAimingLine(shootVector);
-            GameManager.instance.ShootPanel.CurrentCanon.Shoot();
-            //StartCoroutine(SimulateDrag(screenCenter, screenCenter - shootScreenDrag, 0.5f, shootPanel));
+            Vector2 screenCenter = new Vector2(Camera.main.scaledPixelWidth / 2, Camera.main.scaledPixelHeight / 2);
+            Vector2 worldScreenCenter = Camera.main.ScreenToWorldPoint(screenCenter);
+            Vector2 shootScreenDrag = Camera.main.WorldToScreenPoint(worldScreenCenter - shootVector);
+            
+            //GameManager.instance.ShootPanel.CurrentCanon.UpdateAimingLine(shootVector);
+            //GameManager.instance.ShootPanel.CurrentCanon.Shoot();
+            StartCoroutine(SimulateDrag(screenCenter, shootScreenDrag, 0.5f, shootPanel));
         }
         
     }

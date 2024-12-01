@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public GameState CurrentState { get; private set; }
 
     [SerializeField] private PlayerState initnialPlayer;
-    [SerializeField] private PlayerState _currentPlayer;
+    public PlayerState CurrentPlayer { get; private set; }
 
     [SerializeField] private PlayerState Player1;
     [SerializeField] private PlayerState Player2;
@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour
         
         instance = this;
         ShootPanel = FindAnyObjectByType<ShootPanel>();
-        _currentPlayer = initnialPlayer;
-        _currentPlayer.OnEnter();
+        CurrentPlayer = initnialPlayer;
+        CurrentPlayer.OnEnter();
         CurrentState = initialState;
         CurrentState.OnEnter();
 
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     public void SwitchPlayers()
     {
-        if (_currentPlayer == Player1) 
+        if (CurrentPlayer == Player1) 
         {
             SetPlayer(Player2);
         }
@@ -46,8 +46,8 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayer(PlayerState newPlayer)
     {
-        _currentPlayer.OnExit();
-        _currentPlayer = newPlayer;
-        _currentPlayer.OnEnter();
+        CurrentPlayer.OnExit();
+        CurrentPlayer = newPlayer;
+        CurrentPlayer.OnEnter();
     }
 }
